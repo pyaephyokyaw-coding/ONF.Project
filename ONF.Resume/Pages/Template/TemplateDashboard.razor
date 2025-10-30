@@ -1,0 +1,82 @@
+﻿@page "/template-dashboard"
+<MudPopoverProvider />
+
+<MudText Style="padding-top: 20px;" Align="Align.Center" Typo="Typo.h4" hidden="@(showPopUp)">Templates</MudText>
+
+<div class="box-container">
+    @if (!showPopUp)
+    {
+        @foreach (var personalOverview in personalOverviews)
+        {
+            <MudPaper Class="box-item pa-4 ma-2 d-flex flex-column align-items-center"
+                      Elevation="3" MaxWidth="400px" MaxHeight="700px">
+
+                <MudAvatar Style="width: 200px; height: 200px;">
+                    <MudImage Src="@personalOverview.ImageUrl"></MudImage>
+                </MudAvatar>
+
+                <MudText Typo="Typo.h5" Align="Align.Center" Class="fw-bold">
+                    @personalOverview.Name
+                </MudText>
+
+                <MudText Typo="Typo.h6" Align="Align.Center">
+                    @(personalOverview.Title?.Length > 70
+                        ? personalOverview.Title.Substring(0, 70) + "..."
+                        : personalOverview.Title)
+                </MudText>
+
+                <MudText Typo="Typo.body1" Align="Align.Left">
+                    <MudDivider />
+                    @(personalOverview.Summary.Length > 100
+                        ? personalOverview.Summary.Substring(0, 100) + "..."
+                        : personalOverview.Summary)
+                </MudText>
+
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(() => ViewTemplate(personalOverview.Name))">
+                    View Template
+                </MudButton>
+            </MudPaper>
+        }
+    }
+
+    <MudPopover Open="@showPopUp"
+                OverflowBehavior="OverflowBehavior.FlipOnOpen"
+                AnchorOrigin="Origin.CenterCenter"
+                TransformOrigin="Origin.TopCenter"
+                Paper="false">
+
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+            <MudGrid Justify="Justify.Center">
+                <MudItem>
+                    <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Create" OnClick="@ToggleAct" />
+                </MudItem>
+                <MudItem>
+                    <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.FileDownload" OnClick="@ToggleAct" />
+                </MudItem>
+                <MudItem>
+                    <MudFab Color="Color.Secondary" StartIcon="@Icons.Material.Filled.Cancel" OnClick="@ToggleAct" />
+                </MudItem>
+            </MudGrid>
+            <TemplateInfo ResumeCode="@ResumeCode" />
+        </div>
+
+    </MudPopover>
+</div>
+
+
+@code {
+    private List<PersonalOverview> personalOverviews => CommonFunction.personalOverviews;
+
+    private bool showPopUp = false;
+
+    private void ToggleAct() => showPopUp = !showPopUp;
+
+    private string ResumeCode = "";
+
+    private void ViewTemplate(string code)
+    {
+        ResumeCode = code;
+        ToggleAct();
+    }
+}

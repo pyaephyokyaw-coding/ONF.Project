@@ -1,16 +1,34 @@
 ﻿@inherits LayoutComponentBase
-<div class="page">
-    <div class="sidebar">
+<MudThemeProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1" Style="background-color: black; color:white;">
+        <MudLink Typo="Typo.h5" Href="#" Class="no-link-style">ONF</MudLink>
+
+        <MudSpacer />
+
         <NavMenu />
-    </div>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
+        <MudSpacer />
+    </MudAppBar>
+    <MudMainContent>
+        <div style="display:inline; justify-content:center; background-color: dimgrey;">
             @Body
-        </article>
-    </main>
-</div>
+        </div>
+    </MudMainContent>
+</MudLayout>
+
+<style>
+    .no-link-style {
+        color: inherit !important; /* Use parent color */
+        text-decoration: none !important; /* Remove underline */
+        cursor: pointer; /* Keep clickable */
+    }
+
+        .no-link-style:hover,
+        .no-link-style:focus,
+        .no-link-style:active {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+</style>

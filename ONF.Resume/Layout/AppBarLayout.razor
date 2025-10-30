@@ -1,0 +1,30 @@
+﻿@inherits LayoutComponentBase
+<MudThemeProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1" Style="@ColorTheme">
+        <MudText Typo="Typo.h4" Class="ml-3">ONF</MudText>
+
+        <MudSpacer />
+        <!-- Center: NavMenu (desktop only) -->
+        <div class="navmenu-desktop">
+            <NavMenu />
+        </div>
+
+        <MudSpacer />
+        <!-- Right: Mobile icon (mobile only) -->
+        <div class="navmenu-mobile">
+            <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+        </div>
+    </MudAppBar>
+
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private string ColorTheme = "background-color: black; color:white;";
+}
+
+

@@ -1,0 +1,23 @@
+﻿.navmenu-desktop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+}
+
+.navmenu-mobile {
+    display: none;
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+    .navmenu-desktop {
+        display: none;
+        position: fixed;
+    }
+
+    .navmenu-mobile {
+        display: block;
+    }
+}
