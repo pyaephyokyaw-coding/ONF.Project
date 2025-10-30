@@ -9,33 +9,40 @@
         @foreach (var personalOverview in personalOverviews)
         {
             <MudPaper Class="box-item pa-4 ma-2 d-flex flex-column align-items-center"
-                      Elevation="3" MaxWidth="400px" MaxHeight="700px">
+                      Elevation="3"
+                      MaxWidth="400px"
+                      MaxHeight="700px"
+                      Style="display: flex; flex-direction: column; justify-content: space-between; text-align:center;">
 
-                <MudAvatar Style="width: 200px; height: 200px;">
-                    <MudImage Src="@personalOverview.ImageUrl"></MudImage>
-                </MudAvatar>
+                <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center;">
+                    <MudAvatar Style="width: 200px; height: 200px;">
+                        <MudImage Src="@personalOverview.ImageUrl"></MudImage>
+                    </MudAvatar>
 
-                <MudText Typo="Typo.h5" Align="Align.Center" Class="fw-bold">
-                    @personalOverview.Name
-                </MudText>
+                    <MudText Typo="Typo.h5" Align="Align.Center" Class="fw-bold">
+                        @personalOverview.Name
+                    </MudText>
 
-                <MudText Typo="Typo.h6" Align="Align.Center">
-                    @(personalOverview.Title?.Length > 70
-                        ? personalOverview.Title.Substring(0, 70) + "..."
-                        : personalOverview.Title)
-                </MudText>
+                    <MudText Typo="Typo.h6" Align="Align.Center">
+                        @(personalOverview.Title?.Length > 70
+                            ? personalOverview.Title.Substring(0, 70) + "..."
+                            : personalOverview.Title)
+                    </MudText>
 
-                <MudText Typo="Typo.body1" Align="Align.Left">
-                    <MudDivider />
-                    @(personalOverview.Summary.Length > 100
-                        ? personalOverview.Summary.Substring(0, 100) + "..."
-                        : personalOverview.Summary)
-                </MudText>
+                    <MudText Typo="Typo.body1" Align="Align.Left">
+                        @(personalOverview.Summary.Length > 100
+                            ? personalOverview.Summary.Substring(0, 100) + "..."
+                            : personalOverview.Summary)
+                    </MudText>
+                </div>
 
-                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(() => ViewTemplate(personalOverview.Name))">
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           OnClick="@(() => ViewTemplate(personalOverview.Name))">
                     View Template
                 </MudButton>
             </MudPaper>
+
         }
     }
 

@@ -2,20 +2,34 @@
 
 @* <MudCarousel Class="mud-width-full" Style="height:200px;" ShowArrows="@arrows" ShowBullets="@bullets" EnableSwipeGesture="@enableSwipeGesture" AutoCycle="@autocycle" TData="object"> *@
 
-<MudCarousel Class="mud-width-full" Style="height:200px;" ShowArrows="false" ShowBullets="@bullets" AutoCycle="@autocycle" TData="object">
+<MudCarousel Class="mud-width-full" Style="height:300px;" ShowArrows="false" ShowBullets="@bullets" AutoCycle="@autocycle" TData="object">
     <MudCarouselItem Transition="transition" Color="@Color.Primary">
-        <div class="d-flex" style="height:100%">
-            <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" onclick="" />
+        <div style="height:100%; width:100%;">
+            <MudImage Src="img/TemplateWallpaper.jpg"
+                      Alt="Templates"
+                      Class="w-100 h-100 object-fit-cover cursor-pointer"
+                      Elevation="0"
+                      @onclick="@(() => Nav.NavigateTo("/template-dashboard"))" />
         </div>
     </MudCarouselItem>
-    <MudCarouselItem Transition="transition" Color="@Color.Secondary">
-        <div class="d-flex" style="height:100%">
-            <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
+
+    <MudCarouselItem Transition="transition" Color="@Color.Primary">
+        <div style="height:100%; width:100%;">
+            <MudImage Src="img/TemplateWallpaper.jpg"
+                      Alt="Templates"
+                      Class="w-100 h-100 object-fit-cover cursor-pointer"
+                      Elevation="0"
+                      @onclick="@(() => Nav.NavigateTo("/template-dashboard"))" />
         </div>
     </MudCarouselItem>
-    <MudCarouselItem Transition="transition">
-        <div class="d-flex" style="height:100%">
-            <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Color="@Color.Primary" Size="@Size.Large" />
+
+    <MudCarouselItem Transition="transition" Color="@Color.Primary">
+        <div style="height:100%; width:100%;">
+            <MudImage Src="img/TemplateWallpaper.jpg"
+                      Alt="Templates"
+                      Class="w-100 h-100 object-fit-cover cursor-pointer"
+                      Elevation="0"
+                      @onclick="@(() => Nav.NavigateTo("/template-dashboard"))" />
         </div>
     </MudCarouselItem>
 </MudCarousel>
