@@ -1,0 +1,46 @@
+﻿
+@* <MudCarousel Class="mud-width-full" Style="height:200px;" ShowArrows="@arrows" ShowBullets="@bullets" EnableSwipeGesture="@enableSwipeGesture" AutoCycle="@autocycle" TData="object"> *@
+
+<MudCarousel Class="mud-width-full" Style="height:300px;" ShowArrows="false" ShowBullets="@bullets" AutoCycle="@autocycle" TData="object">
+    <MudCarouselItem Transition="transition" Color="@Color.Primary">
+        <div style="height:100%; width:100%;">
+            <MudImage Src="img/TemplateWallpaper.jpg"
+                      Alt="Templates"
+                      Class="w-100 h-100 object-fit-cover cursor-pointer"
+                      Elevation="0"
+                      @onclick="@(() => Nav.NavigateTo("/template-dashboard"))" />
+        </div>
+    </MudCarouselItem>
+
+    <MudCarouselItem Transition="transition" Color="@Color.Primary">
+        <div style="height:100%; width:100%;">
+            <MudImage Src="img/TemplateWallpaper.jpg"
+                      Alt="Templates"
+                      Class="w-100 h-100 object-fit-cover cursor-pointer"
+                      Elevation="0"
+                      @onclick="@(() => Nav.NavigateTo("/template-dashboard"))" />
+        </div>
+    </MudCarouselItem>
+
+    <MudCarouselItem Transition="transition" Color="@Color.Primary">
+        <div style="height:100%; width:100%;">
+            <MudImage Src="img/TemplateWallpaper.jpg"
+                      Alt="Templates"
+                      Class="w-100 h-100 object-fit-cover cursor-pointer"
+                      Elevation="0"
+                      @onclick="@(() => Nav.NavigateTo("/template-dashboard"))" />
+        </div>
+    </MudCarouselItem>
+</MudCarousel>
+@* <MudSwitch @bind-Value="arrows" Color="Color.Primary">Show Arrows</MudSwitch> *@
+@* <MudSwitch @bind-Value="bullets" Color="Color.Primary">Show Bullets</MudSwitch> *@
+@* <MudSwitch @bind-Value="enableSwipeGesture" Color="Color.Primary">Enable Swipe Gesture</MudSwitch> *@
+@* <MudSwitch @bind-Value="autocycle" Color="Color.Primary">Auto Cycle (Default: 5 secs)</MudSwitch> *@
+
+@code {
+    // private bool arrows = true;
+    private bool bullets = true;
+    // private bool enableSwipeGesture = true;
+    private bool autocycle = true;
+    private Transition transition = Transition.Slide;
+}

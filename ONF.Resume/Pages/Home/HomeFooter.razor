@@ -1,0 +1,73 @@
+﻿
+<MudPaper Elevation="0" Class="footer pa-4 mud-width-full" Square="true">
+    <MudContainer MaxWidth="MaxWidth.Large">
+        <MudGrid AlignItems="Center">
+            <!-- Left: Logo + short description -->
+            <MudItem xs="12" sm="6" md="4">
+                <div class="d-flex align-items-start gap-2">
+                    <MudAvatar Size="Size.Large" Variant="Variant.Filled" Class="me-2">
+                        <MudIcon Icon="@Icons.Material.Filled.Work" />
+                    </MudAvatar>
+                    <div>
+                        <MudText Typo="Typo.h6" Class="fw-bold">YourSite</MudText>
+                        <MudText Typo="Typo.caption">Build modern web apps with MudBlazor & Blazor.</MudText>
+                    </div>
+                </div>
+            </MudItem>
+
+            <!-- Middle: Quick links -->
+            <MudItem xs="12" sm="6" md="4">
+                <MudStack Direction="Row" Spacing="4" Wrap="Wrap.Wrap" Class="justify-content-center">
+                    @* <MudLink Href="/about" Class="footer-link">About</MudLink> *@
+                    <MudLink Href="/docs" Class="footer-link">Docs</MudLink>
+                    <MudLink Href="/pricing" Class="footer-link">Pricing</MudLink>
+                    <MudLink Href="/contact" Class="footer-link">Contact</MudLink>
+                </MudStack>
+            </MudItem>
+
+            <!-- Right: Newsletter + social -->
+            <MudItem xs="12" md="4">
+                <div class="d-flex flex-column align-items-end">
+                    <MudForm @ref="_form" Class="d-flex gap-2 align-items-center">
+                        <MudTextField @bind-Value="_email" Placeholder="Email for updates" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.MailOutline" Immediate="true" Size="Size.Small" AriaLabel="newsletter email" />
+                        <MudButton Variant="Variant.Filled" Size="Size.Small" OnClick="Subscribe">Subscribe</MudButton>
+                    </MudForm>
+
+                    <div class="mt-2">
+                        <MudIconButton Href="https://twitter.com" Target="_blank" Rel="noopener" AriaLabel="Twitter" Icon="@Icons.Material.Filled.Abc" />
+                        <MudIconButton Href="https://github.com" Target="_blank" Rel="noopener" AriaLabel="GitHub" Icon="@Icons.Material.Filled.Abc" />
+                        <MudIconButton Href="https://linkedin.com" Target="_blank" Rel="noopener" AriaLabel="LinkedIn" Icon="@Icons.Material.Filled.Abc" />
+                    </div>
+                </div>
+            </MudItem>
+        </MudGrid>
+
+        <MudDivider Class="my-3" />
+
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <MudText Typo="Typo.caption">© @Year YourCompany. All rights reserved.</MudText>
+            <div class="d-flex gap-2 align-items-center">
+                <MudText Typo="Typo.caption">Privacy</MudText>
+                <MudText Typo="Typo.caption">•</MudText>
+                <MudText Typo="Typo.caption">Terms</MudText>
+            </div>
+        </div>
+    </MudContainer>
+</MudPaper>
+
+@code {
+    private string? _email;
+    private MudForm? _form;
+    private int Year = DateTime.Now.Year;
+
+    private async Task Subscribe()
+    {
+        // Minimal client-side feedback. Replace with real subscribe logic.
+        await _form?.Validate();
+        if (_form is not null)
+        {
+            // Example: show a snackbar (requires ISnackbar injection)
+            // _snackbar.Add($"Subscribed {_email}", Severity.Success);
+        }
+    }
+}
