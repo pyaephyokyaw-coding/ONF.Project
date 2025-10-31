@@ -1,20 +1,25 @@
 ﻿@page "/template-info"
 
 <MudContainer Style="padding: 20px;">
+
     <br />
+
     <MudGrid Justify="Justify.Center" Class="mt-4">
         <MudItem>
             <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Create" OnClick="@(() => OnToggleAct.InvokeAsync())" />
         </MudItem>
         <MudItem>
-            <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.FileDownload" OnClick="@(() => OnToggleAct.InvokeAsync())" />
+            <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.FileDownload" OnClick="@(() => DownloadAsPDF())" />
         </MudItem>
         <MudItem>
             <MudFab Color="Color.Secondary" StartIcon="@Icons.Material.Filled.Cancel" OnClick="@(() => OnToggleAct.InvokeAsync())" />
         </MudItem>
     </MudGrid>
+
     <br />
-    <MudPaper Class="d-flex flex-row shadow-xl rounded-1 overflow-hidden">
+    @* //class="portfolio-wrapper" *@
+    <div id="resumeContainer"> 
+        <MudPaper Class="d-flex flex-row shadow-xl rounded-1 overflow-hidden">
 
         <!-- Left Sidebar -->
         <MudPaper Class="pa-4" Style="width:30%; background-color:#1E2A38; color:white;">
@@ -43,36 +48,36 @@
 
             <MudDivider Class="my-4" />
             <MudText Typo="Typo.h6">TECHNICAL SKILLS</MudText>
-            @foreach (var s in resume.TechnicalSkills)
-            {
-                <MudText Typo="Typo.subtitle2">@s.Category</MudText>
-                <ul>
-                    @if (s.Skill1 != null)
-                    {
-                        foreach (var sk in s.Skill1)
+                @foreach (var s in resume.TechnicalSkills)
+                {
+                            <MudText Typo="Typo.subtitle2">@s.Category</MudText>
+                            <ul>
+                        @if (s.Skill1 != null)
                         {
-                            <li>@sk</li>
-                            ;
+                            foreach (var sk in s.Skill1)
+                            {
+                                                                <li>@sk</li>
+                                ;
+                            }
                         }
-                    }
-                    @if (s.Skill2 != null)
-                    {
-                        foreach (var sk in s.Skill2)
+                        @if (s.Skill2 != null)
                         {
-                            <li>@sk</li>
-                            ;
+                            foreach (var sk in s.Skill2)
+                            {
+                                                                <li>@sk</li>
+                                ;
+                            }
                         }
-                    }
-                    @if (s.Skill3 != null)
-                    {
-                        foreach (var sk in s.Skill3)
+                        @if (s.Skill3 != null)
                         {
-                            <li>@sk</li>
-                            ;
+                            foreach (var sk in s.Skill3)
+                            {
+                                                                <li>@sk</li>
+                                ;
+                            }
                         }
-                    }
-                </ul>
-            }
+                            </ul>
+                }
 
         </MudPaper>
 
@@ -83,66 +88,66 @@
             <MudDivider Class="my-4" />
 
             <MudText Typo="Typo.h6" Class="mb-2">EXPERIENCE</MudText>
-            @foreach (var exp in resume.ProfessionalExperience)
-            {
-                <div class="mb-4">
-                    <MudText Typo="Typo.subtitle2">@exp.Role - <b>@exp.CompanyName</b> (@exp.Duration)</MudText>
-                    <MudText Typo="Typo.body2"><b>Responsibilities:</b></MudText>
-                    <ul>
-                        @foreach (var r in exp.Details.Responsibilities)
-                        {
-                            <li>@r</li>
-                        }
-                    </ul>
-                    <MudText Typo="Typo.body2"><b>Achievements:</b></MudText>
-                    <ul>
-                        @foreach (var ac in exp.Details.Achievements)
-                        {
-                            <li>@ac</li>
-                        }
-                    </ul>
-                </div>
-            }
+                @foreach (var exp in resume.ProfessionalExperience)
+                {
+                            <div class="mb-4">
+                                <MudText Typo="Typo.subtitle2">@exp.Role - <b>@exp.CompanyName</b> (@exp.Duration)</MudText>
+                                <MudText Typo="Typo.body2"><b>Responsibilities:</b></MudText>
+                                <ul>
+                            @foreach (var r in exp.Details.Responsibilities)
+                            {
+                                                    <li>@r</li>
+                            }
+                                </ul>
+                                <MudText Typo="Typo.body2"><b>Achievements:</b></MudText>
+                                <ul>
+                            @foreach (var ac in exp.Details.Achievements)
+                            {
+                                                    <li>@ac</li>
+                            }
+                                </ul>
+                            </div>
+                }
 
             <MudDivider Class="my-4" />
             <MudText Typo="Typo.h6">PROJECTS</MudText>
-            @foreach (var p in resume.Projects)
-            {
-                <div class="mb-3">
-                    <MudText Typo="Typo.subtitle2">@p.Name (@p.Date.ToString())</MudText>
-                    <MudText Typo="Typo.body2">@p.Description</MudText>
-                    <MudLink Href="@p.Link" Target="_blank">View Project</MudLink>
-                </div>
-            }
+                @foreach (var p in resume.Projects)
+                {
+                            <div class="mb-3">
+                                <MudText Typo="Typo.subtitle2">@p.Name (@p.Date.ToString())</MudText>
+                                <MudText Typo="Typo.body2">@p.Description</MudText>
+                                <MudLink Href="@p.Link" Target="_blank">View Project</MudLink>
+                            </div>
+                }
 
             <MudDivider Class="my-4" />
             <MudText Typo="Typo.h6">EDUCATION</MudText>
-            @foreach (var e in resume.Education)
-            {
-                <div class="mb-2">
-                    <MudText Typo="Typo.subtitle2">@e.Degree - <b>@e.Institution</b></MudText>
-                    <MudText Typo="Typo.caption">@e.Duration</MudText>
-                    <MudText Typo="Typo.body2">@e.Description</MudText>
-                </div>
-            }
+                @foreach (var e in resume.Education)
+                {
+                            <div class="mb-2">
+                                <MudText Typo="Typo.subtitle2">@e.Degree - <b>@e.Institution</b></MudText>
+                                <MudText Typo="Typo.caption">@e.Duration</MudText>
+                                <MudText Typo="Typo.body2">@e.Description</MudText>
+                            </div>
+                }
 
             <MudDivider Class="my-4" />
             <MudText Typo="Typo.h6">CERTIFICATIONS</MudText>
-            @foreach (var c in resume.Certifications)
-            {
-                <div>
-                    <MudText Typo="Typo.subtitle2">@c.Name (@c.Duration)</MudText>
-                    <MudText Typo="Typo.body2">@c.Courses</MudText>
-                </div>
-            }
+                @foreach (var c in resume.Certifications)
+                {
+                            <div>
+                                <MudText Typo="Typo.subtitle2">@c.Name (@c.Duration)</MudText>
+                                <MudText Typo="Typo.body2">@c.Courses</MudText>
+                            </div>
+                }
 
             <MudDivider Class="my-4" />
             <MudText Typo="Typo.subtitle1"><b>ACHIEVEMENTS</b></MudText>
             <ul>
-                @foreach (var a in resume.Achievements.Items)
-                {
-                    <li>@a</li>
-                }
+                    @foreach (var a in resume.Achievements.Items)
+                    {
+                                <li>@a</li>
+                    }
             </ul>
 
             <MudDivider Class="my-4" />
@@ -151,14 +156,20 @@
             <MudText Typo="Typo.caption">@resume.ResumeFooter.SocialMediaLinks</MudText>
         </MudPaper>
     </MudPaper>
+    </div>
 </MudContainer>
 
 @code {
 
     [Parameter] public string? ResumeCode { get; set; }
-    private string ResumeName = "Tanjiro Kamado";
     [Parameter] public EventCallback OnToggleAct { get; set; }
 
+    private string ResumeName = "Tanjiro Kamado";
 
     private ResumeModel resume => CommonFunction.GetResumeModelByName(ResumeCode ?? ResumeName);
+
+    private async Task DownloadAsPDF()
+    {
+        await JS.InvokeVoidAsync("downloadPortfolioAsPDF", "resumeContainer", ResumeCode);
+    }
 }

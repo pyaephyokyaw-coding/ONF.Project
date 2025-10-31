@@ -101,3 +101,8 @@ a, .btn-link {
 code {
     color: #c02d76;
 }
+
+#resumeContainer {
+    width: 1240px;
+    height: 1753px;
+}
