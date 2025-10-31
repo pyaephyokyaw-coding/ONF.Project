@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
 <MudThemeProvider />
+<MudPopoverProvider />
 
 <MudLayout>
     <MudAppBar Elevation="1" Style="@ColorTheme">
@@ -8,15 +9,23 @@
                   Style="width:40px; height:40px; pointer-events:none; border-radius:50%;" />
 
         <MudSpacer />
+
         <!-- Center: NavMenu (desktop only) -->
         <div class="navmenu-desktop">
             <NavMenu />
         </div>
 
         <MudSpacer />
+
         <!-- Right: Mobile icon (mobile only) -->
         <div class="navmenu-mobile">
-            <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+            <MudMenu Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" AriaLabel="Open user menu">
+                <MudMenuItem Label="Login" OnClick="@(() => Nav.NavigateTo("/"))" />
+                <MudMenuItem Label="Home" OnClick="@(() => Nav.NavigateTo("/"))" />
+                <MudMenuItem Label="Template" OnClick="@(() => Nav.NavigateTo("/template-dashboard"))" />
+                <MudMenuItem Label="About" OnClick="@(() => Nav.NavigateTo("/about"))" />
+                <MudMenuItem Label="Logout" OnClick="@(() => Nav.NavigateTo("/"))" />
+            </MudMenu>
         </div>
     </MudAppBar>
 
