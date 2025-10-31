@@ -44,31 +44,17 @@
 
         }
     }
-
-    <MudPopover Open="@showPopUp"
-                OverflowBehavior="OverflowBehavior.FlipOnOpen"
-                AnchorOrigin="Origin.CenterCenter"
-                TransformOrigin="Origin.TopCenter"
-                Paper="false">
-
-        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-
-            <MudGrid Justify="Justify.Center">
-                <MudItem>
-                    <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Create" OnClick="@ToggleAct" />
-                </MudItem>
-                <MudItem>
-                    <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.FileDownload" OnClick="@ToggleAct" />
-                </MudItem>
-                <MudItem>
-                    <MudFab Color="Color.Secondary" StartIcon="@Icons.Material.Filled.Cancel" OnClick="@ToggleAct" />
-                </MudItem>
-            </MudGrid>
-            <TemplateInfo ResumeCode="@ResumeCode" />
-        </div>
-
-    </MudPopover>
 </div>
+
+<MudPopover Open="@showPopUp"
+            OverflowBehavior="OverflowBehavior.FlipOnOpen"
+            AnchorOrigin="Origin.TopCenter"
+            TransformOrigin="Origin.BottomCenter"
+            Paper="false"
+            Style="position: inherit;">
+
+    <TemplateInfo ResumeCode="@ResumeCode" OnToggleAct="@ShowDashboard" />
+</MudPopover>
 
 
 @code {
@@ -80,9 +66,15 @@
 
     private string ResumeCode = "";
 
-    private void ViewTemplate(string code)
+    private async void ViewTemplate(string code)
     {
         ResumeCode = code;
+        ToggleAct();
+        await JS.InvokeVoidAsync("scrollToTop");
+    }
+
+    private void ShowDashboard()
+    {
         ToggleAct();
     }
 }

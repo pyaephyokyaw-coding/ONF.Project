@@ -1,6 +1,19 @@
 ﻿@page "/template-info"
 
 <MudContainer Style="padding: 20px;">
+    <br />
+    <MudGrid Justify="Justify.Center" Class="mt-4">
+        <MudItem>
+            <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Create" OnClick="@(() => OnToggleAct.InvokeAsync())" />
+        </MudItem>
+        <MudItem>
+            <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.FileDownload" OnClick="@(() => OnToggleAct.InvokeAsync())" />
+        </MudItem>
+        <MudItem>
+            <MudFab Color="Color.Secondary" StartIcon="@Icons.Material.Filled.Cancel" OnClick="@(() => OnToggleAct.InvokeAsync())" />
+        </MudItem>
+    </MudGrid>
+    <br />
     <MudPaper Class="d-flex flex-row shadow-xl rounded-1 overflow-hidden">
 
         <!-- Left Sidebar -->
@@ -144,7 +157,8 @@
 
     [Parameter] public string? ResumeCode { get; set; }
     private string ResumeName = "Tanjiro Kamado";
+    [Parameter] public EventCallback OnToggleAct { get; set; }
+
 
     private ResumeModel resume => CommonFunction.GetResumeModelByName(ResumeCode ?? ResumeName);
-
 }
